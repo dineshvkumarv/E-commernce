@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { HiXMark } from "react-icons/hi2";
 import { Link, useNavigate } from "react-router-dom";
@@ -24,19 +24,23 @@ const SidebarMenu = ({
     navigate("/login");
   };
 
-  useEffect(() => {
-    if (isSidebarOpen) {
-      setIsAnimating(true);
-    } else {
-      const timer = setTimeout(() => setIsAnimating(false), 300); // Match the transition duration
-      return () => clearTimeout(timer);
-    }
-  }, [isSidebarOpen]);
+  // Abrir el menú cuando el cursor entra, y cerrarlo cuando sale.
+  const handleMouseEnter = () => {
+    setIsSidebarOpen(true);
+    setIsAnimating(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsSidebarOpen(false);
+    setTimeout(() => setIsAnimating(false), 300); // Asegurarse de que la animación se complete
+  };
 
   return (
     <>
       {(isSidebarOpen || isAnimating) && (
         <div
+          onMouseEnter={handleMouseEnter} // Mostrar el menú cuando el cursor entra
+          onMouseLeave={handleMouseLeave} // Ocultar el menú cuando el cursor sale
           className={
             isSidebarOpen
               ? "fixed top-0 left-0 w-64 z-50 h-full transition-transform duration-300 ease-in-out bg-white shadow-lg transform border-r border-black translate-x-0"
@@ -46,7 +50,7 @@ const SidebarMenu = ({
           <div className="flex justify-end mr-1 mt-1">
             <HiXMark
               className="text-3xl cursor-pointer"
-              onClick={() => setIsSidebarOpen(false)}
+              onClick={() => setIsSidebarOpen(false)} // Mantener el botón para cerrar manualmente
             />
           </div>
           <div className="flex justify-center mt-2">
@@ -54,7 +58,7 @@ const SidebarMenu = ({
               to="/"
               className="text-4xl font-light tracking-[1.08px] max-sm:text-3xl max-[400px]:text-2xl"
             >
-              FASHION
+              MENÚ
             </Link>
           </div>
           <div className="flex flex-col items-center gap-1 mt-7">
@@ -62,19 +66,19 @@ const SidebarMenu = ({
               to="/"
               className="py-2 border-y border-secondaryBrown w-full block flex justify-center"
             >
-              Home
+              Inicio
             </Link>
             <Link
               to="/shop"
               className="py-2 border-y border-secondaryBrown w-full block flex justify-center"
             >
-              Shop
+              Categorias
             </Link>
             <Link
               to="/search"
               className="py-2 border-y border-secondaryBrown w-full block flex justify-center"
             >
-              Search
+              Buscar
             </Link>
             {loginStatus ? (
               <>
@@ -91,13 +95,13 @@ const SidebarMenu = ({
                   to="/login"
                   className="py-2 border-y border-secondaryBrown w-full block flex justify-center"
                 >
-                  Sign in
+                  Ingresar
                 </Link>
                 <Link
                   to="/register"
                   className="py-2 border-y border-secondaryBrown w-full block flex justify-center"
                 >
-                  Sign up
+                  Registrarse
                 </Link>
               </>
             )}
@@ -105,7 +109,7 @@ const SidebarMenu = ({
               to="/cart"
               className="py-2 border-y border-secondaryBrown w-full block flex justify-center"
             >
-              Cart
+              Carrito de Compras
             </Link>
           </div>
         </div>
