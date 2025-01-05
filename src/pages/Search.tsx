@@ -21,20 +21,26 @@ const Search = () => {
       >
         <input
           type="text"
-          placeholder="Search products"
+          placeholder="Buscar productos"
           className="border border-gray-300 focus:border-gray-400 h-12 text-xl px-3 w-full outline-none max-sm:text-lg"
           name="searchInput"
         />
         <div className="w-52 max-sm:w-40">
-          <Button mode="brown" text="Search" type="submit" />
+          <Button mode="brown" text="Buscar" type="submit" />
         </div>
       </Form>
 
-      <ProductGridWrapper searchQuery={searchParams.get("query")!} page={currentPage}>
+      <ProductGridWrapper
+        searchQuery={searchParams.get("query")!}
+        page={currentPage}
+      >
         <ProductGrid />
       </ProductGridWrapper>
 
-      <ShowingSearchPagination page={currentPage} setCurrentPage={setCurrentPage} />
+      <ShowingSearchPagination
+        page={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };

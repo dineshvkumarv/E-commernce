@@ -39,13 +39,13 @@ const ProductItem = ({
           to={`/product/${id}`}
           className="text-white bg-secondaryBrown text-center text-xl font-normal tracking-[0.6px] leading-[72px] w-full h-12 flex items-center justify-center max-md:text-base"
         >
-          View product
+          Ver Producto
         </Link>
         <Link
           to={`/product/${id}`}
           className="bg-white text-black text-center text-xl border border-[rgba(0, 0, 0, 0.40)] font-normal tracking-[0.6px] leading-[72px] w-full h-12 flex items-center justify-center max-md:text-base"
         >
-          Learn more
+          Mas Información
         </Link>
       </div>
     </div>

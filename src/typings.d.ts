@@ -3,6 +3,8 @@ interface Product {
   title: string;
   image: string;
   category: string;
+  description: string;
+  productDetails: string;
   price: number;
   popularity: number;
   stock: number;

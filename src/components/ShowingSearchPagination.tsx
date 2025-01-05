@@ -10,22 +10,23 @@ const ShowingSearchPagination = ({
   page: number;
   setCurrentPage: (page: number) => void;
 }) => {
-  const { totalProducts, showingProducts } = useAppSelector(state => state.shop);
   const navigate = useNavigate();
   return (
     <div className="px-5 max-[400px]:px-3 mt-12 mb-24">
       <div className="flex flex-col gap-6 justify-center items-center w-1/2 mx-auto max-sm:w-3/4 max-sm:gap-5">
-        <p className="text-xl max-sm:text-lg">Showing { showingProducts } of { totalProducts }</p>
         <Button
-          text="View More"
+          text="Ver más"
           mode="white"
           onClick={() => {
             setCurrentPage(page + 1);
             navigate(`/search?page=${page + 1}`);
           }}
         />
-        <a href="#gridTop" className="flex justify-center items-center text-xl gap-2 max-sm:text-lg">
-          Back to Top <HiChevronUp />
+        <a
+          href="#gridTop"
+          className="flex justify-center items-center text-xl gap-2 max-sm:text-lg"
+        >
+          Volver arriba <HiChevronUp />
         </a>
       </div>
     </div>

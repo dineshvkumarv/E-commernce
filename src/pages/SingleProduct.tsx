@@ -54,6 +54,8 @@ const SingleProduct = () => {
           image: singleProduct.image,
           title: singleProduct.title,
           category: singleProduct.category,
+          description: singleProduct.description,
+          productDetails: singleProduct.productDetails,
           price: singleProduct.price,
           quantity,
           size,
@@ -82,7 +84,7 @@ const SingleProduct = () => {
               <p className="text-base text-secondaryBrown">
                 {formatCategoryName(singleProduct?.category || "")}
               </p>
-              <p className="text-base font-bold">${ singleProduct?.price }</p>
+              <p className="text-base font-bold">${singleProduct?.price}</p>
             </div>
           </div>
           <div className="flex flex-col gap-2">
@@ -102,12 +104,12 @@ const SingleProduct = () => {
             />
             <SelectInputUpgrade
               selectList={[
-                { id: "black", value: "BLACK" },
-                { id: "red", value: "RED" },
-                { id: "blue", value: "BLUE" },
-                { id: "white", value: "WHITE" },
-                { id: "rose", value: "ROSE" },
-                { id: "green", value: "GREEN" },
+                { id: "black", value: "Negro" },
+                { id: "red", value: "Rojo" },
+                { id: "blue", value: "Azul" },
+                { id: "white", value: "Blanco" },
+                { id: "rose", value: "Rosa" },
+                { id: "green", value: "Verde" },
               ]}
               value={color}
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
@@ -123,32 +125,20 @@ const SingleProduct = () => {
             />
           </div>
           <div className="flex flex-col gap-3">
-            <Button mode="brown" text="Add to cart" onClick={handleAddToCart} />
-            <p className="text-secondaryBrown text-sm text-right">
-              Delivery estimated on the Friday, July 26
-            </p>
+            <Button
+              mode="brown"
+              text="Agregar al carrito"
+              onClick={handleAddToCart}
+            />
           </div>
           <div>
             {/* drowdown items */}
-            <Dropdown dropdownTitle="Description">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore
-              quos deleniti, mollitia, vitae harum suscipit voluptatem quasi, ab
-              assumenda accusantium rem praesentium accusamus quae quam tempore
-              nostrum corporis eaque. Mollitia.
+            <Dropdown dropdownTitle="Descripción">
+              {singleProduct?.description}
             </Dropdown>
 
             <Dropdown dropdownTitle="Product Details">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga ad
-              at odio illo, necessitatibus, reprehenderit dolore voluptas ea
-              consequuntur ducimus repellat soluta mollitia facere sapiente.
-              Unde provident possimus hic dolore.
-            </Dropdown>
-
-            <Dropdown dropdownTitle="Delivery Details">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga ad
-              at odio illo, necessitatibus, reprehenderit dolore voluptas ea
-              consequuntur ducimus repellat soluta mollitia facere sapiente.
-              Unde provident possimus hic dolore.
+              {singleProduct?.productDetails}
             </Dropdown>
           </div>
         </div>
