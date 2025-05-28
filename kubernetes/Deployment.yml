@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fashionhaven-frontend
+  labels:
+    app: fashionhaven-frontend
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: fashionhaven-frontend
+  template:
+    metadata:
+      labels:
+        app: fashionhaven-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: dineshkumarv1/fashionhaven:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+
